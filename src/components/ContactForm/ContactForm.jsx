@@ -37,7 +37,8 @@ const initialValues = {
 
 const ContactForm = ({ onSubmit }) => {
   const handleSubmit = (values, { resetForm }) => {
-    onSubmit({ ...values });
+    const isSuccess = onSubmit({ ...values });
+    if (!isSuccess) return;
     resetForm();
   };
   return (

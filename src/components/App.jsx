@@ -15,13 +15,12 @@ class App extends Component {
   };
 
   addContact = ({ name, number }) => {
-    if (
-      this.state.contacts.find(
-        contact => contact.name.toLowerCase() === name.toLowerCase()
-      )
-    ) {
+    const isInContacts = this.state.contacts.find(
+      contact => contact.name.toLowerCase() === name.toLowerCase()
+    );
+    if (isInContacts) {
       alert(`${name} is already in contacts`);
-      return;
+      return false;
     }
     const contact = {
       id: nanoid(5),
@@ -31,6 +30,8 @@ class App extends Component {
     this.setState(({ contacts }) => ({
       contacts: [contact, ...contacts],
     }));
+
+    return true;
   };
 
   onDeleteContact = contactId => {
